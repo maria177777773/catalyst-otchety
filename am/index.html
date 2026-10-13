@@ -1,0 +1,32 @@
+<!doctype html><html lang="ru"><meta charset="utf-8"><meta name="robots" content="noindex"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Аренда мебели · Ёлки</title>
+<style>
+@font-face{font-family:Mulish;src:url(Mulish-Regular.woff2) format("woff2");font-weight:400}
+@font-face{font-family:Mulish;src:url(Mulish-Bold.woff2) format("woff2");font-weight:700}
+@font-face{font-family:Mulish;src:url(Mulish-Black.woff2) format("woff2");font-weight:900}
+*{box-sizing:border-box;margin:0}
+body{font:400 18px/1.45 Mulish,Arial,sans-serif;color:#111;background:#fff;min-height:100vh;display:flex;flex-direction:column}
+header{padding:16px 20px;box-shadow:0 1px 12px rgba(0,0,0,.06);display:flex;align-items:center;gap:10px;font-weight:900;text-transform:uppercase}
+header img{width:40px;height:24px}
+main{padding:28px 20px;max-width:560px;margin:0 auto;width:100%}
+h1{font:900 32px/1.1 Mulish,Arial,sans-serif;margin-bottom:12px}
+p{color:#5a6273;margin-bottom:16px}
+.btn{display:flex;align-items:center;justify-content:center;min-height:56px;border-radius:999px;font-weight:900;font-size:18px;color:#fff;text-decoration:none;margin-top:12px;border:0;width:100%;cursor:pointer;font-family:inherit}
+.go{background:linear-gradient(#2fcf68,#04bf45)}.tg{background:#2aabee}.mx{background:linear-gradient(90deg,#4cb4ff,#7a4bff)}
+#fail{display:none}.spin{width:36px;height:36px;border:4px solid #e7e7e7;border-top-color:#04bf45;border-radius:50%;animation:s 1s linear infinite;margin:20px 0}@keyframes s{to{transform:rotate(360deg)}}
+</style>
+<header><img src="logo.svg" alt="">Аренда мебели</header>
+<main>
+<div id="wait"><h1>Открываем страницу подарка</h1><p>Секунду, переходим на стенд «Аренды мебели».</p><div class="spin"></div></div>
+<div id="fail"><h1>Страница не открылась</h1><p>Возможно, включён VPN. Выключите его и нажмите «Попробовать ещё раз». Либо напишите нам прямо сейчас в мессенджер: сообщение уже готово, вы получите подарок и подборку.</p>
+<button class="btn go" onclick="location.reload()">Попробовать ещё раз</button>
+<a class="btn tg" href="https://t.me/mvk_vikt?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%AF%20%D1%81%20%D1%84%D0%B5%D1%81%D1%82%D0%B8%D0%B2%D0%B0%D0%BB%D1%8F%20%C2%AB%D0%81%D0%BB%D0%BA%D0%B8%C2%BB%2C%20%D1%85%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%B1%D1%80%D0%B0%D1%82%D1%8C%20%D0%BF%D0%BE%D0%B4%D0%B0%D1%80%D0%BE%D0%BA%20%D0%B8%20%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B8%D1%82%D1%8C%20%D0%BF%D0%BE%D0%B4%D0%B1%D0%BE%D1%80%D0%BA%D1%83%20%D1%82%D0%B5%D0%BA%D1%81%D1%82%D0%B8%D0%BB%D1%8F%20%D0%BF%D0%BE%D0%B4%20%D0%BD%D0%B0%D1%88%20%D0%B1%D1%80%D0%B5%D0%BD%D0%B4.">Написать в Telegram</a>
+<a class="btn mx" href="https://max.ru/u/f9LHodD0cOJ7Zt_K9ql3w07qTTIzEOo6TGetEHfpGy2BEgHT0rVOag9T2vo">Написать в Max</a></div>
+</main>
+<script>
+// QR ведёт сюда, а не на сайт напрямую: адрес стенда меняется в одной строке, QR перепечатывать не нужно
+var TARGET='https://catalystrussia.ru/am/'+location.search, done=false;
+function go(){ if(done)return; done=true; location.replace(TARGET); }
+function fail(){ if(done)return; done=true; document.getElementById('wait').style.display='none'; document.getElementById('fail').style.display='block'; }
+var c=new AbortController(), t=setTimeout(function(){c.abort()},6000);
+fetch('https://catalystrussia.ru/am/img/logo.svg',{mode:'no-cors',cache:'no-store',signal:c.signal}).then(function(){clearTimeout(t);go()},fail);
+</script></html>
